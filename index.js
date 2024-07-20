@@ -47,16 +47,7 @@ app.get('/api/data', async (req, res) => {
     }
 });
 
-// Endpoint to add new data
-app.post('/api/data', async (req, res) => {
-    const newData = new Data(req.body);
-    try {
-        await newData.save();
-        res.status(201).send('Data added successfully');
-    } catch (err) {
-        res.status(500).send('Error adding data');
-    }
-});
+
 
 // Endpoint to load data from JSON file and insert into database
 app.get('/api/load-json', async (req, res) => {
