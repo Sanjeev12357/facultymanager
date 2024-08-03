@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 const port = 3000;
+const cors=require('cors');
+
+app.use(cors());
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -43,6 +46,14 @@ app.get('/api/data', async (req, res) => {
         const data = await Data.find();
         res.json(data);
     } catch (err) {
+        app.get('/api/data', async (req, res) => {
+    try {
+        const data = await Data.find();
+        res.json(data);
+    } catch (err) {
+        console.error('Error retrieving data from database',
+            err);
+        }});
         res.status(500).send('Error retrieving data from database');
     }
 });
